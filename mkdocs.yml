@@ -1,7 +1,7 @@
 site_name: BME 307 - Microbes in Health and Disease
 site_url: https://example.com/
 nav:
-  #- Home: index.md
+  - Home: index.md
   - Installation instructions: installation_instructions.md
   - QIIME2 pipeline: qiime2_pipeline.md
   #- User Guide:
