@@ -1,0 +1,112 @@
+site_name: BME 307 - Microbes in Health and Disease
+site_url: https://example.com/
+nav:
+  #- Home: index.md
+  - Installation instructions: installation_instructions.md
+  - QIIME2 pipeline: qiime2_pipeline.md
+  #- User Guide:
+  #    - setup.md
+  #    - Overview: setting-up-the-header.md
+  #    - Installation: setting-up-the-footer.md
+  - About: about.md
+
+# plugins:
+#     - search
+#     - pdf-export
+
+theme: 
+  name: material
+  analytics: {gtag: 'G-274394082'}
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - rust
+  features: 
+    - navigation.tracking
+    - navigation.instant
+    - content.action.edit
+    - content.action.view
+    - navigation.expand
+    - navigation.sections
+    - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - toc.follow
+    - search.suggest
+    - search.higlihgt
+    - content.tabs.link
+    - content.code.annotation
+    - navigation.path
+    - content.code.copy
+  language: en
+  palette:
+    - scheme: default
+      toggle: 
+        icon: material/lightbulb
+      primary:  deep purple
+      accent:  deep purple
+    - scheme: slate
+      toggle: 
+        icon: material/lightbulb-outline
+        name: Swith to dark mode
+      primary:  deep purple
+      accent:  deep purple
+
+
+
+# extra:
+#   social:
+#     - icon: fontawesome/brands/github
+#       link: https://github.com/squidfunk
+#     - icon: fontawesome/brands/gitter
+#       link: https://gitter.im/squidfunk/mkdocs-material
+#     - icon: fontawesome/brands/docker
+#       link: https://hub.docker.com/r/squidfunk/mkdocs-material/
+#     - icon: fontawesome/brands/python
+#       link: https://pypi.org/project/mkdocs-material/
+#     - icon: fontawesome/brands/mastodon
+#       link: https://fosstodon.org/@squidfunk
+#     - icon: fontawesome/brands/twitter
+#       link: https://twitter.com/squidfunk
+
+  # Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
