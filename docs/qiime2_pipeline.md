@@ -196,7 +196,7 @@ qiime feature-classifier classify-sklearn \
     --o-classification taxonomy.qza
 ```
 
-#tabulate taxonomy
+##### tabulate taxonomy
 ```bash
 time \
 qiime metadata tabulate \
