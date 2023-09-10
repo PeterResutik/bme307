@@ -6,9 +6,9 @@ nav:
   - QIIME2 pipeline: qiime2_pipeline.md
   - About: about.md
 
-plugins:
-    - search
-    - pdf-export
+# plugins:
+#     - search
+#     - pdf-export
 
 theme: 
   name: material
