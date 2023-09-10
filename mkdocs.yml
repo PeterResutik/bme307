@@ -4,15 +4,11 @@ nav:
   - Home: index.md
   - Installation instructions: installation_instructions.md
   - QIIME2 pipeline: qiime2_pipeline.md
-  #- User Guide:
-  #    - setup.md
-  #    - Overview: setting-up-the-header.md
-  #    - Installation: setting-up-the-footer.md
   - About: about.md
 
-# plugins:
-#     - search
-#     - pdf-export
+plugins:
+    - search
+    - pdf-export
 
 theme: 
   name: material

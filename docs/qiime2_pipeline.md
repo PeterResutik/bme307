@@ -296,46 +296,12 @@ open 2dcca9b2-070d-43a1-af5d-99fc3b55799b/data/index.html
 
 ### 8. Core metrics phylogenetic: alpha and beta diversities
 
-!!! failure "failure"
-    test
-
-!!! abstract "abstract"
-    test
-
-!!! danger "danger"
-    test
-
-!!! bug "bug"
-    test
-
-!!! example "example"
-    test
-
-!!! quote "quote"
-    test
-
-???+ success "success" 
-    We will produce a number of core diversity metrics (alpha and beta) using a QIIME 2 pipeline, qiime diversity core-metrics-phylogenetic.
-
 !!! info "info" 
-    We will produce a number of core diversity metrics (alpha and beta) using a QIIME 2 pipeline, qiime diversity core-metrics-phylogenetic.
-
-!!! important "important" 
-    We will produce a number of core diversity metrics (alpha and beta) using a QIIME 2 pipeline, qiime diversity core-metrics-phylogenetic.
-
-???+ tip "tip" 
-    We will produce a number of core diversity metrics (alpha and beta) using a QIIME 2 pipeline, qiime diversity core-metrics-phylogenetic. 
-
-!!! warning "warning" 
-    We will produce a number of core diversity metrics (alpha and beta) using a QIIME 2 pipeline, qiime diversity core-metrics-phylogenetic.
-
-!!! question "question" 
     We will produce a number of core diversity metrics (alpha and beta) using a QIIME 2 pipeline, qiime diversity core-metrics-phylogenetic.
 
 ???+ note "info"
     The parameters we need to know include the path to our rooted tree (--i-phylogeny), the path to our feature table (--i-table), the sampling depth at which we would like to rarefy (--p-sampling-depth), the path to the sample information (--m-metadata-file), and the name of the directory we would like to save our results to (--output-dir). If you do not have a tree, or you are not interested in phylogenetic diversity metrics, you can also use qiime diversity core-metrics. We can speed up this command by including the --p-n-jobs-or-threads parameter.
 
- 
 ???+ info "info?"
     - The rarefaction curve shows the sampling depth and the number of samples.
     - Meghna chose 40000 sampling depth here so that we can still look at all the 18 samples.
