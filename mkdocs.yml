@@ -3,8 +3,10 @@ site_url: https://example.com/
 nav:
   - Home: index.md
   - Installation instructions: installation_instructions.md
-  - QIIME2 pipeline: qiime2_pipeline.md
-  - About: about.md
+  - Workflow: workflow.md
+  - QIIME2 primer: qiime2_pipeline.md
+  - Useful commands: commands.md
+#  - About: about.md
 
 # plugins:
 #     - search

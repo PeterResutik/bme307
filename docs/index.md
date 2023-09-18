@@ -1,16 +1,13 @@
 # Welcome to the Bioinformatics Analysis of Microbiome Data
 
 ## 1. INTRODUCTION
-We will be working with NGS data generated from 3 groups of mice: IL-10-/- (deficient), MUC2-/- (deficient), and wild-type mice.
+We will be working with NGS data generated from 3 groups of mice: IL-10<sup>-/-</sup> (deficient), MUC2<sup>-/-</sup> (deficient), and wild-type mice.
 
 ### 1.1 Data type:
-16S rRNA gene sequences from the V4-V5 region, which was targeted with F515/R926 primers (with modifications). The library was sequenced on the Illumina Miseq platform, yielding paired-end reads of 250 bp length (each).
+The data was obtained through targeted amplification of the V4V5 region of the 16S rRNA gene and paired-end sequencing on the Illumina Miseq platform, resulting in forward and reverse reads of 250 bp length (each).
 
-![Image title](16srrna.png){ align=left }
-
-**Figure from Shahi et al. 2017. Gut microbiome in multiple sclerosis: The players involved and the roles they play. Gut Microbes.**
-
-**Figure 1.** Illustration of conserved, variable, hypervariable regions within the 16S rRNA gene and the various primer pairs used for metagenomic sequencing. Conserved regions are represented in blue, variable regions in gray, and hypervariable regions in red. 
+![Image title](16srrna_2.png){ align=left }
+**Figure 1.** Figure 1. Simplified illustration of the genetic region amplified and sequenced. A) The bacterial 16SrRNA gene is part of the ribosomal RNA operon. B) The 16S rRNA gene spans over 1,500 bp and contains conserved regions (light green) as well as variable regions (white). In this study, we targeted the variable regions V4 and V5 using the 515F forward primer and the 926R reverse primer. The targeted region has an approximate length of 411 bp, but library preparation results in longer reads as barcodes are also added.  
 
 <!-- 
 We ask all students to bring their own laptop (there will be only limited number of laptops for those who cannot bring one). Before the beginning of the practical course make sure you have the following software installed. Follow the instructions provided below depending on the operating system (OS) you are using. We will provide a troubleshooting session on Tuesday, after the lecture, for those who need to resolve installation issues.

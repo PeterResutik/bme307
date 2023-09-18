@@ -7,12 +7,13 @@ For the course, we will be using the following software:
 
 1. [Docker](https://www.docker.com/)
 * [QIIME2](https://qiime2.org/) <!--  R to visually explore the sequencing data and to conduct statistical analysis -->
+* [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
  
 Please follow the instructions provided according to the operating system (OS) you are using. Feel free to email us with questions if you encounter installations issues bioinformatics.bme307@gmail.com. See you soon! 
 
 ## For Windows Users:
 
-### 1. Docker + QIIME2
+### 1. Docker + QIIME2 + FastQC
 
 !!! warning "Is "Virtualization" enabled?"
     - Press Ctrl + Alt + Del
@@ -50,6 +51,14 @@ Please follow the instructions provided according to the operating system (OS) y
 docker run hello-world
 ```
 
+Once the docker is installed and running you can run qiime2 and fastqc via the following commands: 
+
+```bash
+docker run --rm -v $(pwd):/data/ -w /data/ -it quay.io/qiime2/core:2023.5
+docker run --rm -v $(pwd):/data/ -w /data/ -it pegi3s/fastqc 
+```
+
+
 ## For Mac Users:
 
 ### 1. Anaconda
@@ -77,15 +86,22 @@ conda env create -n qiime2-2023.5 --file qiime2-2023.5-py38-osx-conda.yml
 conda activate qiime2-2023.5
 ```
 
-```bash
+<!-- ```bash
 docker  pull  quay.io/qiime2/core:2023.5
-```
+``` -->
 
 - Run the following command to test the installation
 
 ```bash
 qiime --help
 ```
+
+### 2. FastQC
+
+Download and install the following [file](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.dmg). 
+
+
+
 
 <!-- ### 2. R and RStudio
 -   [Download R for Windows here](http://cran.r-project.org/bin/windows/base/release.htm)
