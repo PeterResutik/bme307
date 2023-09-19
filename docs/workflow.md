@@ -222,8 +222,7 @@ qiime metadata tabulate \
         1. What are the different taxonomic ranks that are being assigned?
         2. Are there any sequences that are not bacterial? If so, what are they?
     === "Advanced"
-        1. Choose one of the features (ASVs), find its sequences in another file, and use [blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome) to see whether the taxonomic assignment is the same. 
-
+        1. Choose one of the features (ASVs), can you find its nucleotide sequence in another file? Once you have done so, check the taxonomic output obtained using blast, which implements a different algorithm. You can do so [here:](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome). Is the taxonomic assingment the same or different?
 
 #### 3.6 Filter non-bacterial sequences
 
