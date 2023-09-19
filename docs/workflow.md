@@ -300,13 +300,14 @@ qiime diversity alpha-rarefaction \
 
 
 #### 3.9. Core metrics phylogenetic: alpha and beta diversities¶
-To investigate alpha and beta diversity, we use diversity core-metrics-phylogenetic, computing the following metrics. 
-* Alpha diversity indices
+To investigate alpha and beta diversity, we use diversity core-metrics-phylogenetic, computing the following metrics.
+
+- Alpha diversity indices
     * Shannon’s diversity 
     * Observed Features (in this case ASVs)
     * Faith’s Phylogenetic Diversity 
     * Evenness 
-* Beta diversity distances
+- Beta diversity distances
     * Jaccard distance 
     * Bray-Curtis distance 
     * unweighted UniFrac distance 
