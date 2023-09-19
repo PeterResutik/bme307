@@ -188,8 +188,10 @@ qiime feature-table summarize \
 Open QIIME2 view (https://view.qiime2.org/) and drop the table.qzv in the drag&drop window to see the results. 
 
 ???+ question "Question(s):"
-    1.	Across all 18 samples, compare the number of reads before and after denoising. 
-    2.	Get together in pairs, and on a piece of paper, calculate the percentage of reads that have been retained for each sample. 
+    1. In the overview tab, what does number of features refer to?
+    2. In the interactive tab, quantitatively compare the number of reads before and after denoising for all 18 samples.
+    3.	Get together in pairs, and calculate the percentage of reads that have been retained for each sample. 
+
 
 **Optional command:** Visualise the representative sequences after denoising with DADA2
 We use qiime feature-table tabulate-seqs to see the unique/representative sequences.
@@ -211,7 +213,7 @@ We now assign taxonomy to the unique/representative sequences found across all s
 
 ```bash 
 qiime feature-classifier classify-sklearn \
-    --i-classifier silva-138-ssu-nr99-97-V4V5-classifier.qza \
+    --i-classifier Taxonomy_classifier/silva-138-ssu-nr99-99-V4V5-classifier.qza \
     --i-reads QIIME2_files/rep-seqs.qza \
     --o-classification QIIME2_files/taxonomy.qza
 ```
@@ -388,7 +390,7 @@ qiime diversity beta-group-significance \
 
 ???+ question "Question(s):"
     1. Explore the different distance metrics and the corresponding PCoA plots generated. What are the similarities and differences?  
-    2. Now focus on the weighted and the unweighted unifrac distance matrix. Are there significant differences across the groups?
+    2. Now focus on the weighted and the unweighted unifrac distance matrices. Are there significant differences across the groups with these distance matrices?
 
 
 
