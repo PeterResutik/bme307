@@ -21,9 +21,8 @@ An example of one entry of a FASTQ file (note that this corresponds to only one 
     Select two fastq files, one corresponding to forward reads (R1) and one corresponding to reverse reads (R2). Next, explore the files using the command line (**tip:** use the commands you learnt previously).
 
 ???+ question "Question(s):"
-    1.	Print the first 10 lines
-    2.	Is the file format as expected?
-    3.	How many reads (entries) are there in each of these two files?
+    1.	Is the file format as expected?
+    2.	How many reads (entries) are there in each of these two files?
 
 ### 2.	 Quality check using FastQC 
 We now examine the quality of the bases. This will help us determine if there are parts of the reads that need to be trimmed/truncated. 
@@ -34,7 +33,7 @@ Access the folder with all the raw .fastq (navigate with the `cd` command) files
 === "Mac"
 
     ``` bash
-    docker run --rm -v $(pwd):/data/ -w /data/ -it pegi3s/fastqc *.fastq
+    fastqc *.fastq
     ```
 
 === "Windows"
@@ -53,6 +52,8 @@ Access the folder with all the raw .fastq (navigate with the `cd` command) files
 We will now use QIIME2 for the next steps in the workflow: these involve importing the fastq files, trimming the primers, "cleaning up" the reads the merging the forward and reverse reads, generating a table containing information on the reads and their abundance, assigning taxonomy to these reads, and carrying out statistical analyses on bacterial diversity. 
 
 #### 3.1 Activate QIIME 2 environment
+Set the path to the correct directory after downloading the necessary folder from switchdrive
+
 As a first step, activate QIIME with the following command:
 
 === "Mac"
@@ -70,10 +71,10 @@ As a first step, activate QIIME with the following command:
 #### 3.2. Import raw data
 Next, you will import the raw data (fastq files) by running qiime tools import. Notice that with this tool, each of the parameters you can provide starts with two dashes. Here you will be specifying the following parameters:
 
-* --type: whether your data is single-end or paired-end
-* --input-path specifies where your raw data is (path to the folder)
-* --input-format specifies the format of the data. The available choices are provided [here](https://docs.qiime2.org/2023.7/tutorials/importing/#sequence-data-with-sequence-quality-information-i-e-fastq)
-* --output-path: species the output path of the artefact you generate.
+* type: whether your data is single-end or paired-end
+* input-path specifies where your raw data is (path to the folder)
+* input-format specifies the format of the data. The available choices are provided [here](https://docs.qiime2.org/2023.7/tutorials/importing/#sequence-data-with-sequence-quality-information-i-e-fastq)
+* output-path: species the output path of the artefact you generate.
 
 Run the following command:
 
@@ -82,16 +83,16 @@ qiime tools import \
     --type 'SampleData[PairedEndSequencesWithQuality]' \
     --input-path Raw_data/Raw_data_zipped \
     --input-format CasavaOneEightSingleLanePerSampleDirFmt \
-    --output-path Output/demux-paired-end.qza
+    --output-path QIIME2_files/demux-paired-end.qza
 ```
  
-#### 3.3 Summarise imported data and visualise
+##### 3.2.1 Summarise imported data and visualise
 You can now check whether the data was imported by running qiime demux summarise, specifying the name of the input file and the name of the artefact you want to generate. You can visualise this artefact by dropping it in QIIME2 view (https://view.qiime2.org/). 
 
 ``` bash
 qiime demux summarize \
-    --i-data Output/demux-paired-end.qza \
-    --o-visualization Output/demux-paired-end-summary.qzv  
+    --i-data QIIME2_files/demux-paired-end.qza \
+    --o-visualization QIIME2_files/demux-paired-end-summary.qzv  
 ```
 
 ???+ question "Question(s):"
@@ -103,16 +104,13 @@ qiime demux summarize \
         1.	Look at the plots and the quality scores: What trends do you observe in terms of quality score changes in the forward and reverse reads?
         2.	Scroll down to the “Demultiplexed sequence length summary”: What is the read length? How much overlap do you expect for the forward and reverse reads? 
 
-#### 3.4 Remove primers with Cutadapt
-We need to remove the primers that were used for targeted amplification. To do this we use cutadapt trim-paired, specifying these main parameters:
+#### 3.3 Remove primers with Cutadapt
+We need to remove the primers that were used for targeted amplification. To do this we use *cutadapt trim-paired*, specifying these main parameters:
 
-* --i-demultiplexed-sequences: specify input file name
-* --p-front-f GTGYCAGCMGCCGCGGTAA: specify sequence of the forward primer
-* --p-front-r CCGYCAATTYMTTTRAGTTT: specify sequence of the reverse primer 
-* --p-match-adapter-wildcards: ?
-* --p-match-read-wildcards: ?
-* --p-discard-untrimmed: ?
-* --o-trimmed-sequences: specify output file 
+* forward primer: which is “GTGYCAGCMGCCGCGGTAA”
+* reverse primer: which is “CCGYCAATTYMTTTRAGTTT”
+* whether you have wobble basesbases other than A/T/C/G in the read 
+* whether you should discard reads that were not trimmed
 
 ???+ tip "tip:" 
     --verbose: The verbose option specifies that you want to display detailed processing information on your screen. 
@@ -123,18 +121,17 @@ qiime cutadapt trim-paired \
     --p-front-f GTGYCAGCMGCCGCGGTAA \
     --p-front-r CCGYCAATTYMTTTRAGTTT \
     --p-match-adapter-wildcards \
-    --p-match-read-wildcards \
     --p-discard-untrimmed \
     --verbose \
-    --o-trimmed-sequences Output/paired-end-demux-trimmed.qza | tee Output/cutadaptresults.log
+    --o-trimmed-sequences QIIME2_files/paired-end-demux-trimmed.qza | tee QIIME2_files/cutadaptresults.log
 ```
 
 ???+ question "Question(s):"
-    1.	What does  --p-match-read-wildcards do? Tip: go to the Cutadapt website to find out (https://cutadapt.readthedocs.io/en/stable/)
+    1.	What are wobble bases? What does --p-match-adapterread-wildcards do?  Tip: go to the Cutadapt website to find out (https://cutadapt.readthedocs.io/en/stable/)
     2.	What does --p-discard-untrimmed do? What kinds of reads might not get trimmed? 
     3.	For the same samples explored earlier, open the fastq files after having run cutadapt. 
 
-#### 3.5 Denoise with DADA2
+#### 3.4 Denoise with DADA2
 
 Now we will “denoise” the reads, that is, carry out a series of steps with the goal of retaining “true” reads, those that represent the taxa that are present in the sample. These reads may differ by one nucleotide, and they are referred to as exact sequence variants (ESVs) or amplicon sequence variants (ASVs). 
 
@@ -142,18 +139,17 @@ As we are working with paired end reads, we use qiime2 dada2 denoise-paired. Thr
 
 The quality filtering aspect refers to trimming the ends of reads where quality is suboptimal, users can also discard sequences below a particular length. This step is done first to optimize the merging of forward and reverse reads. The merging is done according to default parameters (not specified in the command). 
 
-Dereplication combines all identical sequencing reads into “unique sequences” with a corresponding “abundance” equal to the number of reads with that unique sequence. Dereplication substantially reduces computation time by eliminating redundant comparisons.
+Dereplication refers to checking the presence of all identical sequencing reads and then reducing these to one “unique sequence” with a note of its abundance.  Removal of chimeras refers to the removal of sequences that are “hybrids” of different parent sequences, and which do not correspond to true ASVs.
 
-Removal of chimeras refers to the removal of sequences that align to different positions in a reference genome?
+Here we will be specifying the following parameters: 
 
-The main parameters specified are the following: 
-
-* --i-demultiplexed-seqs: specify input file name
-* --p-trunc-len-f : specify at what length the forward reads will be cut 
-* --p-trunc-len-r: specify at what length the reverse reads will be cut 
-* --o-table: specify output file name 
-* --o-representative-sequences: specify output file name for the dereplicated sequences
-* --o-denoising-stats: specify output file name for the denoising statistics
+* Truncation length for forward reads: at what length the forward reads will be cut and all reads below this length will be discarded
+* Truncation length for reverse reads: at what length the reverse reads will be cut and all reads below this length will be discarded
+ 
+Note that now we will have 3 output files:
+* an abundance table comprising the unique sequences and their abundance
+* a fasta file with the unique sequences, which we refer to as the representative sequences
+* a file containing the statistics for the denoising steps
 
 You can find more information on DADA2 here (https://benjjneb.github.io/dada2/).
 
@@ -161,122 +157,130 @@ Run the following command:
  
 ```bash
 qiime dada2 denoise-paired \
-    --i-demultiplexed-seqs Output/paired-end-demux-trimmed.qza \
+    --i-demultiplexed-seqs QIIME2_files/paired-end-demux-trimmed.qza \
     --p-trunc-len-f 225 \
     --p-trunc-len-r 225 \
-    --o-table Output/table.qza \
-    --o-representative-sequences Output/rep-seqs.qza \
-    --o-denoising-stats Output/denoising-stats.qza 
+    --o-table QIIME2_files/table.qza \
+    --o-representative-sequences QIIME2_files/rep-seqs.qza \
+    --o-denoising-stats QIIME2_files/denoising-stats.qza 
 ```
 
-#### 3.6. Summarize read counts
+##### 3.4.1 Summarize read counts
 
-We now summarise the number of reads in each sample after denoising, using qiime feature-table summarize. Then 
-
-The main parameters specified are the following: 
-
-* --i-table: specify input file 
-* --o-visualization: specify output file for visualization in QIIME2 view
-* --m-sample-metadata-file: specify which is the metadata file
+We will now summarise the number of reads that we have in each sample, having done the denoising. We use  *feature-table summarize*, providing a metadata file that contains information about our samples. 
 
 Run the following command: 
 ```bash
 qiime feature-table summarize \
-    --i-table Output/table.qza \
-    --o-visualization Output/table.qzv \
-    --m-sample-metadata-file Output/metadata.tsv
+    --i-table QIIME2_files/table.qza \
+    --o-visualization QIIME2_files/table.qzv \
+    --m-sample-metadata-file Metadata/metadata.tsv
 ```
 
-Open QIIME2 view (https://view.qiime2.org/) and drop the table.qzv to see the results. 
+Open QIIME2 view (https://view.qiime2.org/) and drop the table.qzv in the drag&drop window to see the results. 
 
 ???+ question "Question(s):"
     1.	Across all 18 samples, compare the number of reads before and after denoising. 
     2.	Get together in pairs, and on a piece of paper, calculate the percentage of reads that have been retained for each sample. 
 
 **Optional command:** Visualise the representative sequences after denoising with DADA2
-We use qiime feature-table tabulate-seqs with the following parameters: 
-
-*  --i-data: specify input file
-*  --o-visualization: specify output file for visualization in QIIME2 view
+We use qiime feature-table tabulate-seqs to see the unique/representative sequences.
 
 Run the following command: 
 
 ```bash
 qiime feature-table tabulate-seqs \
-    --i-data Output/rep-seqs.qza \
-    --o-visualization Output/rep-seqs.qzv
+    --i-data QIIME2_files/rep-seqs.qza \
+    --o-visualization QIIME2_files/rep-seqs.qzv
 ```
 
 ???+ question "Question(s):"
     1. After running denoising with DADA2, we have obtained a set of amplicon sequence variants or exact sequence variants. Why is the length of these sequences different to that of the reads in the first fastq files you looked at?  
 
 
-#### 3.7  Assign taxonomy
-We now assign taxonomy to the representative sequences found across all samples. We do so using a QIIME2 x and a database in the form of a QIIME2 artefact. Taxonomic assignment is done using taxonomic ranks (explain), explain confidence 
-
-WE do so by using the qiime feature-classifier classify-sklearn and the following parameters: 
-
-* --i-classifier silva-138-ssu-nr99-97-V4V5-classifier.qza \
-* --i-reads rep-seqs.qza \
-* --o-classification taxonomy.qza
+#### 3.5  Assign taxonomy
+We now assign taxonomy to the unique/representative sequences found across all samples. We do this with the q2-feature-classifier plugin, making use of a pre-trained Naive Bayes classifier. This classifier is an algorithm that was trained on the SILVA reference database (downloadedDecember 2019) comprising hundreds of thousands of bacterial sequences with taxonomic information. The output is a file containing the results for the different taxonomic ranks (from domain to species), and the level of confidence for the taxonomic assignment. 
 
 ```bash 
 qiime feature-classifier classify-sklearn \
     --i-classifier silva-138-ssu-nr99-97-V4V5-classifier.qza \
-    --i-reads rep-seqs.qza \
-    --o-classification taxonomy.qza
+    --i-reads QIIME2_files/rep-seqs.qza \
+    --o-classification QIIME2_files/taxonomy.qza
 ```
 
-##### tabulate taxonomy
+##### 3.5.1 Tabulate the taxonomy with the following command:
+
 ```bash
 qiime metadata tabulate \
-    --m-input-file taxonomy.qza \
-    --o-visualization taxonomy.qzv
+    --m-input-file QIIME2_files/taxonomy.qza \
+    --o-visualization QIIME2_files/taxonomy.qzv
 ```
 
 
-???+ question "Question(s)"
-    1. Are there any sequences that are not bacterial? If so, what are they?
+???+ question "Question(s):"
+    === "Basic"
+        1. What are the different taxonomic ranks that are being assigned?
+        2. Are there any sequences that are not bacterial? If so, what are they?
+    === "Advanced"
+        1. Choose one of the features (ASVs), find its sequences in another file, and use [blast](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome) to see whether the taxonomic assignment is the same. 
 
-#### 3.8 Filter out seqeunces which are not bacterial
 
-!!! tip "16S rRNA"
-    By targeting 16S rRNA, we want to target bacteria and archaea. Therefore, we can exclude sequences that are unexpected such as those from chloroplasts or mitochondria. By setting --p-include p__, we are retaining only sequences annotated at a minimum to the phylum level. Note: this will look different depending on the database used. Greengenes specifically uses the following format for annotations: k__;p__;c__;o__;f__;g__;s__. Also, --p-mode contains ensures that search terms are case insensitve (e.g., mitochondria versus Mitochondria).
+#### 3.6 Filter non-bacterial sequences
+
+Our library preparation and sequencing targets the prokaryotic 16S rRNA gene, but we may end up obtaining reads that are not prokaryotic eg from chloroplasts or mitochondria, and with reads that originate from archaea, which we are not looking at in this study. By using *taxa filter-table* we can specify what taxa we want to retain and what taxa we want to exclude in the ASV abundance table. With “mode” we are specifying that we want the search terms not to be case sensitive e.g. Eukaryota/eukaryota.
+
+<!-- !!! tip "16S rRNA"
+    By targeting 16S rRNA, we want to target bacteria and archaea. Therefore, we can exclude sequences that are unexpected such as those from chloroplasts or mitochondria. By setting --p-include p__, we are retaining only sequences annotated at a minimum to the phylum level. Note: this will look different depending on the database used. Greengenes specifically uses the following format for annotations: k__;p__;c__;o__;f__;g__;s__. Also, --p-mode contains ensures that search terms are case insensitve (e.g., mitochondria versus Mitochondria). -->
+
+Run the following commands:
 
 ```bash
 qiime taxa filter-table \
 --i-table table.qza \
---i-taxonomy taxonomy.qza \
+--i-taxonomy QIIME2_files/taxonomy.qza \
 --p-mode contains \
---p-include p__ \
---p-exclude 'p__;,Chloroplast,Mitochondria' \
---o-filtered-table filtered-table.qza
+--p-include d__ \
+--p-exclude 'd__;,Eukaryota' \
+--o-filtered-table QIIME2_files/filtered-table.qza
 ```
  
 ```bash
 qiime feature-table filter-seqs \
---i-data rep-seqs.qza \
---i-table filtered-table.qza \
---o-filtered-data filtered-sequences.qza
+--i-data QIIME2_files/rep-seqs.qza \
+--i-table QIIME2_files/filtered-table.qza \
+--o-filtered-data QIIME2_files/filtered-sequences.qza
 ```
 
-#### 3.9 Generate taxonomic barplots
+???+ question "Question(s)"
+    1. What is the last command being used for?
+
+#### 3.7 Generate taxonomic barplots
+
+In order to visualise the relative abundance of the taxa in each sample, we use *taxa barplot*
+
+Run the following command:
 
 ```bash
 qiime taxa barplot \
---i-table filtered-table.qza \
---i-taxonomy taxonomy.qza \
---m-metadata-file metadata.tsv \
---o-visualization taxa-bar-plots-1.qzv
+--i-table QIIME2_files/filtered-table.qza \
+--i-taxonomy QIIME2_files/taxonomy.qza \
+--m-metadata-file Metadata/metadata.tsv \
+--o-visualization QIIME2_files/taxa-bar-plots-1.qzv
 ```
 
-#### 3.10. Generate the rarefaction curve
+???+ question "Question(s)"
+    1. What taxonomic ranks correspond to the different “levels”?
+    2. What patterns do you observe at the different taxonomic ranks/levels? Do you observe any differences across the three groups? 
+    3. Which taxonomic rank provides most information about the differences across the groups?
+    4. Which taxa differ most, in terms of relative abundance, across the three groups?
+    5. Investigate these taxa using online resources: what other relevant information can you find in the literature? 
 
-???+ quote "Rarefaction curve"
-    A rarefaction curve plots the number of counts sampled (rarefaction depth) vs. the expected value of species diversity. --- Weiss et al. 2017
 
-!!! info "Rarefaction curve" 
-    Rarefaction curve: As the sequencing depth increases, you recover more and more of the diversity observed in the data. At a certain point (read depth), diversity will stabilize, meaning the diversity in the data has been fully captured. This point of stabilization will result in the diversity measure of interest plateauing.
+#### 3.8. Generate the rarefaction curve
+
+We expect greater sequencing depth to allow us to capture bacterial diversity more accurately: as sequencing depth increases, more and more taxa are recovered. You can see this in the rarefaction plot, where we look at the changes in observed features (ASVs) recovered at different sequencing depths (number of reads sequenced). However, at a certain point we observe that the number of features recovered stabilises: we reach a plateau, and we infer that the sequencing depth is sufficient.
+
+Plot the rarefaction curves for the samples from the dataset using *diversity alpha-rarefaction*. 
 
 ???+ tip "tip"
     Help on aplha diversity: qiime diversity alpha-rarefaction –help
@@ -284,25 +288,105 @@ qiime taxa barplot \
 
 ```bash
 qiime diversity alpha-rarefaction \
-    --i-table filtered-table.qza \
-    --i-phylogeny phylogeny-align-to-tree-mafft-fasttree/rooted_tree.qza \
-    --m-metadata-file metadata.tsv \
-    --p-max-depth 80000 \
-    --o-visualization alpha-rarefaction-plot_80000.qzv
+    --i-table QIIME2_files/filtered-table.qza \
+    --i-phylogeny Phylogenetic_tree/rooted_tree.qza \
+    --m-metadata-file Metadata/metadata.tsv \
+    --p-max-depth 88500 \
+    --o-visualization QIIME2_files/alpha-rarefaction-plot.qzv
 ```
 
 ???+ question "Question(s):"
-    1.	Why did we specify a max depth of 88,644?
-    2.	Do you observe differences across the three groups?
+    1. Why did we specify a max depth of 88,500?
+    2. Do you observe differences across the three groups?
 
-#### 3.11. Core metrics phylogenetic: alpha and beta diversities¶
-We will now produce a number of core diversity metrics (alpha and beta) using a QIIME 2 pipeline, qiime diversity core-metrics-phylogenetic.
 
-???+ note "info"
+#### 3.9. Core metrics phylogenetic: alpha and beta diversities¶
+To investigate alpha and beta diversity, we use diversity core-metrics-phylogenetic, computing the following metrics. 
+* Alpha diversity indices
+    * Shannon’s diversity 
+    * Observed Features (in this case ASVs)
+    * Faith’s Phylogenetic Diversity 
+    * Evenness 
+* Beta diversity distances
+    * Jaccard distance 
+    * Bray-Curtis distance 
+    * unweighted UniFrac distance 
+    * weighted UniFrac distance 
+
+To run these analyses, in addition to the ASV abundance table, we need to provide a phylogenetic tree (already generated for you) and the metadata file. To increase computational speed we use 
+the --p-n-jobs-or-threads.
+
+Importantly, *diversity core-metrics-phylogenetic* requires us to use the same sampling depth for all samples. Thus, we need to provide a sampling depth, that is, the number of total reads from each sample that will be used. If we want to keep all samples in the analyses, we will have to specify the minimum read depth in our sample set. Do you recall what this was? Make sure to specify it with--p-sampling-depth 
+
+Run the following command:
+
+
+<!-- ???+ note "info"
     The parameters we need to know include the path to our rooted tree (--i-phylogeny), the path to our feature table (--i-table), the sampling depth at which we would like to rarefy (--p-sampling-depth), the path to the sample information (--m-metadata-file), and the name of the directory we would like to save our results to (--output-dir). If you do not have a tree, or you are not interested in phylogenetic diversity metrics, you can also use qiime diversity core-metrics. We can speed up this command by including the --p-n-jobs-or-threads parameter.
 
 ???+ question "Question(s):"
-    We have chosen a sampling depth that corresponds to the minimum number of reads in a sample. Which sample is it?
+    We have chosen a sampling depth that corresponds to the minimum number of reads in a sample. Which sample is it? -->
+
+We use qiime diversity core-metrics-phylogenetic to generate a set of results. 
+
+```bash
+qiime diversity core-metrics-phylogenetic \
+    --i-phylogeny Phylogenetic_tree/rooted-tree.qza \
+    --i-table QIIME2_files/filtered-table.qza \
+    --p-sampling-depth xxxx \
+    --p-n-jobs-or-threads 4 \
+    --m-metadata-file Metadata/metadata.tsv \
+    --output-dir QIIME2_files/diversity-core-metrics-phylogenetic
+```
+View the folders that have been generated by running: 
+
+```bash
+ls -l diversity-core-metrics-phylogenetic
+```
+
+###### 3.9.1 Alpha diversity and significance
+We will first focus on alpha (intra-sample diversity) and return to beta diversities later again. 
+For the alpha diversity indices, we check whether there are significant differences across groups. We do so using *diversity alpha-group significance*. You can do this for any of the indices computed. 
+
+Run the following command to test statistically significant differences for the “observed features” index:
+
+```bash
+qiime diversity alpha-group-significance \
+    --i-alpha-diversity QIIME2_files/diversity-core-metrics-phylogenetic/observed_features_vector.qza \
+    --m-metadata-file Metadata/metadata.tsv \
+    --o-visualization QIIME2_files/alpha-group-sig-obs-feats.qzv
+```
+
+???+ question "Question(s):"
+    1. Explore the alpha diversity indices, and test statistical significance for these. In pairs, discuss the patterns observed. Which “groups” of samples have higher intra-sample diversity? Which groups have lower intra-sample diversity? What could be potential explanations?  
+    2. Are the alpha diversity patterns congruent with the taxonomic composition observed in the barplots?
+
+**For turbo learners**
+Now run the previous command specifying different sampling depths (remember to save the output file under a different name). 
+
+
+##### 3.11.2 Beta diversity and significance
+We now focus on beta diversity (inter-sample diversity). To test significance we use *diversity beta-group significance*. We will do so for the Bray Curtis distance matrix. 
+
+
+```bash
+qiime diversity beta-group-significance \
+    --i-distance-matrix QIIME2_files/diversity-core-metrics-phylogenetic/bray_curtis_distance_matrix.qza \
+    --m-metadata-file Metadata/metadata.tsv \
+    --m-metadata-column type \
+    --o-visualization diversity-core-metrics-phylogenetic/braycurtis-type-significance.qzv \
+    --p-pairwise
+```
+
+???+ question "Question(s):"
+    1. Explore the different distance metrics and the corresponding PCoA plots generated. What are the similarities and differences?  
+    2. Now focus on the weighted and the unweighted unifrac distance matrix. Are there significant differences across the groups?
+
+
+
+
+<!-- ???+ note "Note"
+    Again, rarefaction is used to eliminate issues due to differences in library size prior to beta diversity. This method is built-in to QIIME 2 core metrics pipelines. We can examine the stability of a beta diversity metric using qiime diversity beta-rarefaction. -->
 
 
 <!--
@@ -371,7 +455,7 @@ We will now produce a number of core diversity metrics (alpha and beta) using a 
 
 
  
- 
+<!--
 ```bash
 #!unzip alpha-rarefaction-plot_50000.qzv
 
@@ -399,7 +483,7 @@ open 2dcca9b2-070d-43a1-af5d-99fc3b55799b/data/index.html
     - The rarefaction curve shows the sampling depth and the number of samples.
     - Meghna chose 40000 sampling depth here so that we can still look at all the 18 samples.
     - Meghna tried 50000 sampling depth and the total number of samples was reduced to 9 in future plots.
-    - Tamara and Meghna tried 20000 sampling depth due to alpha-rarefaction-plot_80000.qzv --> first sample drops out at around 22000 sequencing depth
+    - Tamara and Meghna tried 20000 sampling depth due to alpha-rarefaction-plot_80000.qzv  first sample drops out at around 22000 sequencing depth
 
 ```bash
 qiime diversity core-metrics-phylogenetic \
@@ -485,4 +569,4 @@ unzip wu-pcoa-emperor-w-time.qzv
 
 ```bash
 open 8312bd2c-1554-45a3-a3ba-1d3878e9b564/data/index.html
-```
+``` -->
