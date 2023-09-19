@@ -1,7 +1,7 @@
 # Installation instructions
 
 
-We ask all students to bring their own laptop and to install the required software before the beginning of the practicals. We will provide a troubleshooting session on Tuesday [PLACEHOLDER], after the lecture, for those who need to resolve installation issues.
+We ask all students to bring their own laptop and to install the required software before the beginning of the practicals. We will provide a troubleshooting session on Tuesday (19.9.2023), after the lecture, for those who need to resolve installation issues.
 
 For the course, we will be using the following software:
 
@@ -54,8 +54,7 @@ docker run hello-world
 Once the docker is installed and running you can run qiime2 and fastqc via the following commands: 
 
 ```bash
-docker run --rm -v $(pwd):/data/ -w /data/ -it quay.io/qiime2/core:2023.5
-docker run --rm -v $(pwd):/data/ -w /data/ -it pegi3s/fastqc 
+docker run --rm -v ${pwd}:/data/ -w /data/ -it quay.io/qiime2/core:2023.5
 ```
 
 
@@ -66,7 +65,7 @@ docker run --rm -v $(pwd):/data/ -w /data/ -it pegi3s/fastqc
 - Install Anaconda for Mac from [here](https://repo.anaconda.com/archive/Anaconda3-2023.07-2-MacOSX-x86_64.pkg)
 - Double click the .pkg file.
 - Test your installation. 
-- Run the following command in Terminal 
+- Run the following command in the Terminal 
 
 ```bash
 conda list
@@ -99,6 +98,9 @@ qiime --help
 ### 2. FastQC
 
 Download and install the following [file](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.dmg). 
+
+!!! warning "Do you have issues starting the tool due to verification?"
+    - Install Java Development Kit from [here](https://www.oracle.com/java/technologies/downloads/#jdk21-mac) and try again
 
 
 

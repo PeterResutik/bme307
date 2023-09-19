@@ -2,7 +2,7 @@
 
 ## PRELIMINARY READ PROCESSING
 
-In our pipeline we will be working with reads that have already been demultiplexed and trimmed (primers and barcodes removed). You will need to download the following starting folder for your analyses: fastq_after_cutadapt. For each sample, there are two fastq files (R1 and R2). R1 corresponds to all the forward reads and R2 to all the reverse reads.
+In our pipeline we will be working with reads that have already been demultiplexed. You will need to download the following starting folder for your analyses: Practical_materials_uploads. For each sample, there are two fastq files (R1 and R2). R1 corresponds to all the forward reads and R2 to all the reverse reads.
 
 We will first look at the fastq files, then check the quality of the reads with FastQC and MultiQC, and then conduct read processing in QIIME2 (denoising and OTU clustering). Follow the steps below:
 
@@ -52,7 +52,7 @@ Access the folder with all the raw .fastq (navigate with the `cd` command) files
 We will now use QIIME2 for the next steps in the workflow: these involve importing the fastq files, trimming the primers, "cleaning up" the reads the merging the forward and reverse reads, generating a table containing information on the reads and their abundance, assigning taxonomy to these reads, and carrying out statistical analyses on bacterial diversity. 
 
 #### 3.1 Activate QIIME 2 environment
-Set the path to the correct directory after downloading the necessary folder from switchdrive
+Set the path to the correct directory after downloading the necessary folder from switchdrive (https://drive.switch.ch/index.php/s/i97MUDfcbcFNQVp)
 
 As a first step, activate QIIME with the following command:
 
@@ -69,10 +69,9 @@ As a first step, activate QIIME with the following command:
     ```
 
 #### 3.2. Import raw data
-Next, you will import the raw data (fastq files) by running qiime tools import. Notice that with this tool, each of the parameters you can provide starts with two dashes. Here you will be specifying the following parameters:
+Next, you will import the raw data (fastq files) by running qiime *tools import*. Notice that with this tool, each of the parameters you can provide starts with two dashes. Here you will be specifying the following parameters:
 
 * type: whether your data is single-end or paired-end
-* input-path specifies where your raw data is (path to the folder)
 * input-format specifies the format of the data. The available choices are provided [here](https://docs.qiime2.org/2023.7/tutorials/importing/#sequence-data-with-sequence-quality-information-i-e-fastq)
 * output-path: species the output path of the artefact you generate.
 
@@ -81,7 +80,7 @@ Run the following command:
 ``` bash
 qiime tools import \
     --type 'SampleData[PairedEndSequencesWithQuality]' \
-    --input-path Raw_data/Raw_data_zipped \
+    --input-path Raw_data_zipped \
     --input-format CasavaOneEightSingleLanePerSampleDirFmt \
     --output-path QIIME2_files/demux-paired-end.qza
 ```
@@ -109,7 +108,7 @@ We need to remove the primers that were used for targeted amplification. To do t
 
 * forward primer: which is “GTGYCAGCMGCCGCGGTAA”
 * reverse primer: which is “CCGYCAATTYMTTTRAGTTT”
-* whether you have wobble basesbases other than A/T/C/G in the read 
+* whether you have wobble bases
 * whether you should discard reads that were not trimmed
 
 ???+ tip "tip:" 
@@ -126,6 +125,14 @@ qiime cutadapt trim-paired \
     --o-trimmed-sequences QIIME2_files/paired-end-demux-trimmed.qza | tee QIIME2_files/cutadaptresults.log
 ```
 
+Summarise the .qza artefact using the command below, and then visualise the trimmed reads in QIIME 2 view (https://view.qiime2.org/). 
+
+```bash
+qiime demux summarize \
+    --i-data QIIME2_files/paired-end-demux-trimmed.qza \ 
+    --o-visualization QIIME2_files/paired-end-demux-trimmed-summary.qzv 
+```
+
 ???+ question "Question(s):"
     1.	What are wobble bases? What does --p-match-adapterread-wildcards do?  Tip: go to the Cutadapt website to find out (https://cutadapt.readthedocs.io/en/stable/)
     2.	What does --p-discard-untrimmed do? What kinds of reads might not get trimmed? 
@@ -135,7 +142,7 @@ qiime cutadapt trim-paired \
 
 Now we will “denoise” the reads, that is, carry out a series of steps with the goal of retaining “true” reads, those that represent the taxa that are present in the sample. These reads may differ by one nucleotide, and they are referred to as exact sequence variants (ESVs) or amplicon sequence variants (ASVs). 
 
-As we are working with paired end reads, we use qiime2 dada2 denoise-paired. Through this command, quality filtering, merging of forward and reverse reads, dereplication and removal of chimeras is conducted. 
+As we are working with paired end reads, we use qiime2 *dada2 denoise-paired*. Through this command, quality filtering, merging of forward and reverse reads, dereplication and removal of chimeras is conducted. 
 
 The quality filtering aspect refers to trimming the ends of reads where quality is suboptimal, users can also discard sequences below a particular length. This step is done first to optimize the merging of forward and reverse reads. The merging is done according to default parameters (not specified in the command). 
 
@@ -147,6 +154,7 @@ Here we will be specifying the following parameters:
 * Truncation length for reverse reads: at what length the reverse reads will be cut and all reads below this length will be discarded
  
 Note that now we will have 3 output files:
+
 * an abundance table comprising the unique sequences and their abundance
 * a fasta file with the unique sequences, which we refer to as the representative sequences
 * a file containing the statistics for the denoising steps
