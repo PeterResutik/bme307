@@ -117,7 +117,7 @@ We need to remove the primers that were used for targeted amplification. To do t
 
 ```bash
 qiime cutadapt trim-paired \
-    --i-demultiplexed-sequences Output/demux-paired-end.qza \
+    --i-demultiplexed-sequences QIIME2_files/demux-paired-end.qza \
     --p-front-f GTGYCAGCMGCCGCGGTAA \
     --p-front-r CCGYCAATTYMTTTRAGTTT \
     --p-match-adapter-wildcards \
