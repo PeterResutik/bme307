@@ -65,7 +65,7 @@ As a first step, activate QIIME with the following command:
 === "Windows"
 
     ``` bash
-    docker run --rm -v $(pwd):/data/ -w /data/ -it quay.io/qiime2/core:2023.5
+    docker run --rm -v ${pwd}:/data/ -w /data/ -it quay.io/qiime2/core:2023.5
     ```
 
 #### 3.2. Import raw data
