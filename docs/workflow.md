@@ -134,9 +134,14 @@ qiime demux summarize \
 ```
 
 ???+ question "Question(s):"
-    1.	What are wobble bases? What does --p-match-adapterread-wildcards do?  Tip: go to the Cutadapt website to find out (https://cutadapt.readthedocs.io/en/stable/)
-    2.	What does --p-discard-untrimmed do? What kinds of reads might not get trimmed? 
-    3.	For the same samples explored earlier, open the fastq files after having run cutadapt. 
+    === "Basic - Check the “Overview” tab"
+        1. What are wobble bases? What does --p-match-adapterread-wildcards do?  Tip: go to the Cutadapt website to find out (https://cutadapt.readthedocs.io/en/stable/)
+        2. What does --p-discard-untrimmed do? What kinds of reads might not get trimmed? 
+        3. For the same samples explored earlier, how many reads are there?
+    === "Advanced – check the “Interactive” tab"
+        1.	What are the read lengths now? What was the length of the primer sequences? 
+
+
 
 #### 3.4 Denoise with DADA2
 
