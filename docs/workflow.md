@@ -129,7 +129,7 @@ Summarise the .qza artefact using the command below, and then visualise the trim
 
 ```bash
 qiime demux summarize \
-    --i-data QIIME2_files/paired-end-demux-trimmed.qza \ 
+    --i-data QIIME2_files/paired-end-demux-trimmed.qza \
     --o-visualization QIIME2_files/paired-end-demux-trimmed-summary.qzv 
 ```
 
