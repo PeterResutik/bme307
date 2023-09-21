@@ -250,7 +250,7 @@ Run the following commands:
 
 ```bash
 qiime taxa filter-table \
---i-table table.qza \
+--i-table QIIME2_files/table.qza \
 --i-taxonomy QIIME2_files/taxonomy.qza \
 --p-mode contains \
 --p-include d__ \
