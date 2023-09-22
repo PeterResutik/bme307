@@ -389,7 +389,7 @@ qiime diversity beta-group-significance \
     --i-distance-matrix QIIME2_files/diversity-core-metrics-phylogenetic/bray_curtis_distance_matrix.qza \
     --m-metadata-file Metadata/metadata.tsv \
     --m-metadata-column type \
-    --o-visualization diversity-core-metrics-phylogenetic/braycurtis-type-significance.qzv \
+    --o-visualization QIIME2_files/diversity-core-metrics-phylogenetic/braycurtis-type-significance.qzv \
     --p-pairwise
 ```
 
