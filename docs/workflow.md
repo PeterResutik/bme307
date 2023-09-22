@@ -303,7 +303,7 @@ Plot the rarefaction curves for the samples from the dataset using *diversity al
 ```bash
 qiime diversity alpha-rarefaction \
     --i-table QIIME2_files/filtered-table.qza \
-    --i-phylogeny Phylogenetic_tree/rooted_tree.qza \
+    --i-phylogeny Phylogenetic_tree/rooted-tree.qza \
     --m-metadata-file Metadata/metadata.tsv \
     --p-max-depth 88500 \
     --o-visualization QIIME2_files/alpha-rarefaction-plot.qzv
