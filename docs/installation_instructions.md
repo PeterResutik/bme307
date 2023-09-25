@@ -13,7 +13,7 @@ Please follow the instructions provided according to the operating system (OS) y
 
 ## For Windows Users:
 
-### 1. Docker + QIIME2 + FastQC
+### 1. Docker + QIIME2 
 
 !!! warning "Is "Virtualization" enabled?"
     - Press Ctrl + Alt + Del
@@ -100,7 +100,14 @@ qiime --help
 Download and install the following [file](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.dmg). 
 
 !!! warning "Do you have issues starting the tool due to verification?"
-    - Install Java Development Kit from [here](https://www.oracle.com/java/technologies/downloads/#jdk21-mac) and try again
+    - Install Java Development Kit from [here](https://www.oracle.com/java/technologies/downloads/#jdk21-mac) and try again. 
+
+If installing Java Development Kit did not work, download the FastQC source code from [here:](https://github.com/s-andrews/FastQC/archive/refs/tags/v0.12.1.zip). Unzip the file and from the terminal window, navigate to the unzipped folder on your mac. Subsequently, run the following command: 
+
+```bash
+./fastqc
+```
+
 
 
 

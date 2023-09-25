@@ -18,7 +18,7 @@ An example of one entry of a FASTQ file (note that this corresponds to only one 
 ![Image](fastq.png){ align=left }
 
 ???+ danger "Exercise 1"
-    Select two fastq files, one corresponding to forward reads (R1) and one corresponding to reverse reads (R2). Next, explore the files using the command line (**tip:** use the commands you learnt previously).
+    Select two fastq files, one corresponding to forward reads (R1) and one corresponding to reverse reads (R2). Copy them to a new folder called Raw_data_unzipped. Unzip them either with double clicking (on a Windows machine) or by running the following command gzip -d NAME_OF_THE_FILE (on a Mac). Next, explore the files using the command line (**tip:** use the commands you learnt previously).
 
 ???+ question "Question(s):"
     1.	Is the file format as expected?
@@ -39,8 +39,9 @@ Access the folder with all the raw .fastq (navigate with the `cd` command) files
 === "Windows"
 
     ``` bash
-    docker run --rm -v ${PWD}:/data/ -w /data/ -it pegi3s/fastqc *.fastq
+    docker run --rm -v ${PWD}:/data/ -w /data/ -it pegi3s/fastqc IL10-1_S13_L001_R1_001.fastq
     ```
+    Run this command independently for each unzipped file (in your Raw_data_unzipped folder). 
 
 ???+ question "Question(s):"
     1.	Overall, which fastq file has higher quality scores, the R1 or R2?
@@ -52,9 +53,9 @@ Access the folder with all the raw .fastq (navigate with the `cd` command) files
 We will now use QIIME2 for the next steps in the workflow: these involve importing the fastq files, trimming the primers, "cleaning up" the reads the merging the forward and reverse reads, generating a table containing information on the reads and their abundance, assigning taxonomy to these reads, and carrying out statistical analyses on bacterial diversity. 
 
 #### 3.1 Activate QIIME 2 environment
-Set the path to the correct directory after downloading the necessary folder from switchdrive (https://drive.switch.ch/index.php/s/i97MUDfcbcFNQVp)
+Set the path to the correct directory after downloading the necessary folder from Switchdrive (https://drive.switch.ch/index.php/s/i97MUDfcbcFNQVp)
 
-As a first step, activate QIIME with the following command:
+As a first step, activate QIIME with the following command (before doing so, navigate into the folder where you downloaded and unzipped the file from Switchdrive "Practical_materials_uploads"):
 
 === "Mac"
 
@@ -585,3 +586,11 @@ unzip wu-pcoa-emperor-w-time.qzv
 ```bash
 open 8312bd2c-1554-45a3-a3ba-1d3878e9b564/data/index.html
 ``` -->
+
+
+
+  <!-- qiime feature-table filter-samplas \
+    --i-table QIIME2_files/filtered_table.qza \
+    --m-metadata-file Metadata/Metadata.tsv \
+    --p-where '[mouse_number]="IL10-5" OR [mouse_number]="IL10-6"' \
+    --o-filtered-table QIIME2_files/filtered-table_new.qza -->
