@@ -3,14 +3,14 @@
 Depending on your operating system, open either terminal (Mac) or PowerShell (Windows). There are some similarities and some differences between Terminal and PowerShell commands. One important one is the usage of slashes (/) in case of Mac, and backslashes (\) in case of Windows, when specifying a path. 
 
 
-## List files in the current working directory
+## 1. List files in the current working directory
 
 ```bash
 `ls`
 ```
 
-## Change directory
-### Relative path
+## 2. Change directory
+### 2.1 Relative path
 ```bash
 `cd ./Downloads` 
 ```
@@ -19,7 +19,7 @@ the . before slash (/) means current directory
 cd ..
 ```
 .. means parent directory
-### Absolute path 
+### 2.2 Absolute path 
 
 === "Mac"
 
@@ -33,7 +33,7 @@ cd ..
     cd C:\Users\Peter\Downloads
     ```
 
-## Create directory
+## 3. Create directory
 ``` bash
 mkdir example
 ```
@@ -42,7 +42,7 @@ ls
 ```
 You should now see a directory called "example" in your current working directory. 
 
-## Create a .txt file
+## 4. Create a .txt file
 === "Mac"
 
     ``` bash
@@ -57,7 +57,7 @@ You should now see a directory called "example" in your current working director
 
 Write something in the file (at least two lines). 
 
-## Head and Tail
+## 5. Head and Tail
 
 When working with large files, we encourage you examine them. Since files are often too big
 to be loaded into Excel, head and tail commands are good alternatives to get a good idea of
@@ -76,7 +76,7 @@ what the file looks like (this only works for unzipped files, i.e. non-binary).
 
 You can replace the word head with tail to see the end of the file. 
 
-## Docker users (both Mac and Windows users)
+## 6. Docker 
 Docker is a tool designed to make it easier to create, deploy, and run applications by using
 containers. Containers allow a developer to package up an application with all of the parts it
 needs, such as operating system, libraries and other dependencies, and ship it all out as one
