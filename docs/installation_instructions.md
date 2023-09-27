@@ -102,7 +102,7 @@ Download and install the following [file](https://www.bioinformatics.babraham.ac
 !!! warning "Do you have issues starting the tool due to verification?"
     - Install Java Development Kit from [here](https://www.oracle.com/java/technologies/downloads/#jdk21-mac) and try again. 
 
-If installing Java Development Kit did not work, download the FastQC source code from [here:](https://github.com/s-andrews/FastQC/archive/refs/tags/v0.12.1.zip). Unzip the file and from the terminal window, navigate to the unzipped folder on your mac. Subsequently, run the following command: 
+If installing Java Development Kit did not work, download the FastQC source code from [here](https://github.com/s-andrews/FastQC/archive/refs/tags/v0.12.1.zip). Unzip the file and from the terminal window, navigate to the unzipped folder on your mac. Subsequently, run the following command: 
 
 ```bash
 ./fastqc
