@@ -12,7 +12,7 @@ ls
 ## 2. Change directory
 ### 2.1 Relative path
 ```bash
-cd ./Downloads` 
+cd ./Downloads
 ```
 the . before slash (/) means current directory
 ```bash
