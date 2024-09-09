@@ -1,5 +1,6 @@
 # Installation instructions
 
+TEST TEST TEST 
 
 We ask all students to bring their own laptop and to install the required software before the beginning of the practicals. We will provide a troubleshooting session on Tuesday (19.9.2023), after the lecture, for those who need to resolve installation issues.
 
