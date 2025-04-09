@@ -1,0 +1,1532 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://example.com/workflow/">
+      
+      
+        <link rel="prev" href="../installation_instructions/">
+      
+      
+        <link rel="next" href="../qiime2_pipeline/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Workflow - BME 307 - Microbes in Health and Disease</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#workflow" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BME 307 - Microbes in Health and Disease" class="md-header__button md-logo" aria-label="BME 307 - Microbes in Health and Disease" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BME 307 - Microbes in Health and Disease
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Workflow
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label=""  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Swith to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Swith to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../installation_instructions/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Installation instructions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Workflow
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../qiime2_pipeline/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  QIIME2 primer
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../commands/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Useful commands
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BME 307 - Microbes in Health and Disease" class="md-nav__button md-logo" aria-label="BME 307 - Microbes in Health and Disease" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BME 307 - Microbes in Health and Disease
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation instructions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Workflow
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Workflow
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preliminary-read-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      PRELIMINARY READ PROCESSING
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PRELIMINARY READ PROCESSING">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-check-the-fastq-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Check the fastq files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-quality-check-using-fastqc" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Quality check using FastQC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-qiime2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. QIIME2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. QIIME2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-activate-qiime-2-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Activate QIIME 2 environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-import-raw-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. Import raw data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2. Import raw data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-summarise-imported-data-and-visualise" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.1 Summarise imported data and visualise
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-remove-primers-with-cutadapt" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Remove primers with Cutadapt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-denoise-with-dada2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Denoise with DADA2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Denoise with DADA2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#341-summarize-read-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.1 Summarize read counts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-assign-taxonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Assign taxonomy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 Assign taxonomy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#351-tabulate-the-taxonomy-with-the-following-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5.1 Tabulate the taxonomy with the following command:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-filter-non-bacterial-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 Filter non-bacterial sequences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-generate-taxonomic-barplots" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.7 Generate taxonomic barplots
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-generate-the-rarefaction-curve" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.8. Generate the rarefaction curve
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-core-metrics-phylogenetic-alpha-and-beta-diversities" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.9. Core metrics phylogenetic: alpha and beta diversities¶
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.9. Core metrics phylogenetic: alpha and beta diversities¶">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#391-alpha-diversity-and-significance" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.9.1 Alpha diversity and significance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#392-beta-diversity-and-significance" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.9.2 Beta diversity and significance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qiime2_pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QIIME2 primer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Useful commands
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preliminary-read-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      PRELIMINARY READ PROCESSING
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PRELIMINARY READ PROCESSING">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-check-the-fastq-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Check the fastq files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-quality-check-using-fastqc" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Quality check using FastQC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-qiime2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. QIIME2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. QIIME2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-activate-qiime-2-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Activate QIIME 2 environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-import-raw-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. Import raw data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2. Import raw data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-summarise-imported-data-and-visualise" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.1 Summarise imported data and visualise
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-remove-primers-with-cutadapt" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Remove primers with Cutadapt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-denoise-with-dada2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Denoise with DADA2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Denoise with DADA2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#341-summarize-read-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.1 Summarize read counts
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-assign-taxonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Assign taxonomy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 Assign taxonomy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#351-tabulate-the-taxonomy-with-the-following-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5.1 Tabulate the taxonomy with the following command:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-filter-non-bacterial-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 Filter non-bacterial sequences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-generate-taxonomic-barplots" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.7 Generate taxonomic barplots
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-generate-the-rarefaction-curve" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.8. Generate the rarefaction curve
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-core-metrics-phylogenetic-alpha-and-beta-diversities" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.9. Core metrics phylogenetic: alpha and beta diversities¶
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.9. Core metrics phylogenetic: alpha and beta diversities¶">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#391-alpha-diversity-and-significance" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.9.1 Alpha diversity and significance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#392-beta-diversity-and-significance" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.9.2 Beta diversity and significance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h1>
+<h2 id="preliminary-read-processing">PRELIMINARY READ PROCESSING<a class="headerlink" href="#preliminary-read-processing" title="Permanent link">&para;</a></h2>
+<p>In our pipeline we will be working with reads that have already been demultiplexed. You will need to download the following starting folder for your analyses: Practical_materials_uploads. For each sample, there are two fastq files (R1 and R2). R1 corresponds to all the forward reads and R2 to all the reverse reads.</p>
+<p>We will first look at the fastq files, then check the quality of the reads with FastQC and MultiQC, and then conduct read processing in QIIME2 (denoising and OTU clustering). Follow the steps below:</p>
+<h3 id="1-check-the-fastq-files">1.  Check the <a href="https://knowledge.illumina.com/software/general/software-general-reference_material-list/000002211#">fastq files</a><a class="headerlink" href="#1-check-the-fastq-files" title="Permanent link">&para;</a></h3>
+<p>After sequencing, the output is provided in the form of two FASTQ files per sample, one labelled R1 (forward reads) and one labelled R2 (reverse reads). Each FASTQ file contains reads, and these are provided as an entry with 4 lines: </p>
+<ol>
+<li>The first line contains a sequence identifier, including information about the sequencing run and the cluster. It usually begins with an “@”.</li>
+<li>The second line contains the base calls of the sequence (A, C, T, G and N).</li>
+<li>The third line comprises a plus (+) sign, which acts as a separator.</li>
+<li>The fourth line, which is important for the next step, provides information on the quality of each of the base calls. These are Phred +33 encoded, using ASCII characters to represent the numerical quality scores.</li>
+</ol>
+<p>An example of one entry of a FASTQ file (note that this corresponds to only one read of hundreds or thousands sequenced):
+<img align="left" alt="Image" src="../fastq.png" /></p>
+<details class="danger" open="open">
+<summary>Exercise 1</summary>
+<p>Select two fastq files, one corresponding to forward reads (R1) and one corresponding to reverse reads (R2). Copy them to a new folder called Raw_data_unzipped. Unzip them either with double clicking (on a Windows machine) or by running the following command gzip -d NAME_OF_THE_FILE (on a Mac). Next, explore the files using the command line (<strong>tip:</strong> use the commands you learnt previously).</p>
+</details>
+<details class="question" open="open">
+<summary>Question(s):</summary>
+<ol>
+<li>Is the file format as expected?</li>
+<li>How many reads (entries) are there in each of these two files?</li>
+</ol>
+</details>
+<h3 id="2-quality-check-using-fastqc">2.   Quality check using FastQC<a class="headerlink" href="#2-quality-check-using-fastqc" title="Permanent link">&para;</a></h3>
+<p>We now examine the quality of the bases. This will help us determine if there are parts of the reads that need to be trimmed/truncated. </p>
+<p>For the two fastq files you selected earlier, run fastqc as follows:
+Access the folder with all the raw .fastq (navigate with the <code>cd</code> command) files through Terminal (Mac Users) or Powershell (Windows Users). Next run the following command: </p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Mac</label><label for="__tabbed_1_2">Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>fastqc<span class="w"> </span>*.fastq
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/data/<span class="w"> </span>-w<span class="w"> </span>/data/<span class="w"> </span>-it<span class="w"> </span>pegi3s/fastqc<span class="w"> </span>IL10-1_S13_L001_R1_001.fastq
+</span></code></pre></div>
+Run this command independently for each unzipped file (in your Raw_data_unzipped folder). </p>
+</div>
+</div>
+</div>
+<details class="question" open="open">
+<summary>Question(s):</summary>
+<ol>
+<li>Overall, which fastq file has higher quality scores, the R1 or R2?</li>
+<li>In each of these files, at which position do you observe a steep decline in base quality?</li>
+</ol>
+</details>
+<h3 id="3-qiime2">3.  QIIME2<a class="headerlink" href="#3-qiime2" title="Permanent link">&para;</a></h3>
+<p>We will now use QIIME2 for the next steps in the workflow: these involve importing the fastq files, trimming the primers, "cleaning up" the reads the merging the forward and reverse reads, generating a table containing information on the reads and their abundance, assigning taxonomy to these reads, and carrying out statistical analyses on bacterial diversity. </p>
+<h4 id="31-activate-qiime-2-environment">3.1 Activate QIIME 2 environment<a class="headerlink" href="#31-activate-qiime-2-environment" title="Permanent link">&para;</a></h4>
+<p>Set the path to the correct directory after downloading the necessary folder from Switchdrive (<a href="https://drive.switch.ch/index.php/s/i97MUDfcbcFNQVp">https://drive.switch.ch/index.php/s/i97MUDfcbcFNQVp</a>)</p>
+<p>As a first step, activate QIIME with the following command (before doing so, navigate into the folder where you downloaded and unzipped the file from Switchdrive "Practical_materials_uploads"):</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Mac</label><label for="__tabbed_2_2">Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>qiime2-2023.5
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="si">${</span><span class="nv">pwd</span><span class="si">}</span>:/data/<span class="w"> </span>-w<span class="w"> </span>/data/<span class="w"> </span>-it<span class="w"> </span>quay.io/qiime2/core:2023.5
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h4 id="32-import-raw-data">3.2. Import raw data<a class="headerlink" href="#32-import-raw-data" title="Permanent link">&para;</a></h4>
+<p>Next, you will import the raw data (fastq files) by running qiime <em>tools import</em>. Notice that with this tool, each of the parameters you can provide starts with two dashes. Here you will be specifying the following parameters:</p>
+<ul>
+<li>type: whether your data is single-end or paired-end</li>
+<li>input-format specifies the format of the data. The available choices are provided <a href="https://docs.qiime2.org/2023.7/tutorials/importing/#sequence-data-with-sequence-quality-information-i-e-fastq">here</a></li>
+<li>output-path: species the output path of the artefact you generate.</li>
+</ul>
+<p>Run the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>qiime<span class="w"> </span>tools<span class="w"> </span>import<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>--type<span class="w"> </span><span class="s1">&#39;SampleData[PairedEndSequencesWithQuality]&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span>--input-path<span class="w"> </span>Raw_data_zipped<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span>--input-format<span class="w"> </span>CasavaOneEightSingleLanePerSampleDirFmt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span>--output-path<span class="w"> </span>QIIME2_files/demux-paired-end.qza
+</span></code></pre></div>
+<h5 id="321-summarise-imported-data-and-visualise">3.2.1 Summarise imported data and visualise<a class="headerlink" href="#321-summarise-imported-data-and-visualise" title="Permanent link">&para;</a></h5>
+<p>You can now check whether the data was imported by running qiime demux summarise, specifying the name of the input file and the name of the artefact you want to generate. You can visualise this artefact by dropping it in QIIME2 view (<a href="https://view.qiime2.org/">https://view.qiime2.org/</a>). </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>qiime<span class="w"> </span>demux<span class="w"> </span>summarize<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>--i-data<span class="w"> </span>QIIME2_files/demux-paired-end.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span>--o-visualization<span class="w"> </span>QIIME2_files/demux-paired-end-summary.qzv<span class="w">  </span>
+</span></code></pre></div>
+<details class="question" open="open">
+<summary>Question(s):</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Basic - Check the “Overview” tab</label><label for="__tabbed_3_2">Advanced – check the “Interactive” tab</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ol>
+<li>How many forward and reverse reads are there overall?</li>
+<li>For the samples you examined on FastQC, how many forward reads and reverse reads are there?</li>
+<li>Do any samples stand out eg have a particularly high or low number of reads? </li>
+</ol>
+</div>
+<div class="tabbed-block">
+<ol>
+<li>Look at the plots and the quality scores: What trends do you observe in terms of quality score changes in the forward and reverse reads?</li>
+<li>Scroll down to the “Demultiplexed sequence length summary”: What is the read length? How much overlap do you expect for the forward and reverse reads? </li>
+</ol>
+</div>
+</div>
+</div>
+</details>
+<h4 id="33-remove-primers-with-cutadapt">3.3 Remove primers with Cutadapt<a class="headerlink" href="#33-remove-primers-with-cutadapt" title="Permanent link">&para;</a></h4>
+<p>We need to remove the primers that were used for targeted amplification. To do this we use <em>cutadapt trim-paired</em>, specifying these main parameters:</p>
+<ul>
+<li>forward primer: which is “GTGYCAGCMGCCGCGGTAA”</li>
+<li>reverse primer: which is “CCGYCAATTYMTTTRAGTTT”</li>
+<li>whether you have wobble bases</li>
+<li>whether you should discard reads that were not trimmed</li>
+</ul>
+<details class="tip" open="open">
+<summary>tip:</summary>
+<p>--verbose: The verbose option specifies that you want to display detailed processing information on your screen. </p>
+</details>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>qiime<span class="w"> </span>cutadapt<span class="w"> </span>trim-paired<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>--i-demultiplexed-sequences<span class="w"> </span>QIIME2_files/demux-paired-end.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span>--p-front-f<span class="w"> </span>GTGYCAGCMGCCGCGGTAA<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span>--p-front-r<span class="w"> </span>CCGYCAATTYMTTTRAGTTT<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span>--p-match-adapter-wildcards<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span>--p-discard-untrimmed<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span>--verbose<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span>--o-trimmed-sequences<span class="w"> </span>QIIME2_files/paired-end-demux-trimmed.qza<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>QIIME2_files/cutadaptresults.log
+</span></code></pre></div>
+<p>Summarise the .qza artefact using the command below, and then visualise the trimmed reads in QIIME 2 view (<a href="https://view.qiime2.org/">https://view.qiime2.org/</a>). </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>qiime<span class="w"> </span>demux<span class="w"> </span>summarize<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span>--i-data<span class="w"> </span>QIIME2_files/paired-end-demux-trimmed.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>--o-visualization<span class="w"> </span>QIIME2_files/paired-end-demux-trimmed-summary.qzv<span class="w"> </span>
+</span></code></pre></div>
+<details class="question" open="open">
+<summary>Question(s):</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Basic - Check the “Overview” tab</label><label for="__tabbed_4_2">Advanced – check the “Interactive” tab</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ol>
+<li>What are wobble bases? What does --p-match-adapterread-wildcards do?  Tip: go to the Cutadapt website to find out (<a href="https://cutadapt.readthedocs.io/en/stable/">https://cutadapt.readthedocs.io/en/stable/</a>)</li>
+<li>What does --p-discard-untrimmed do? What kinds of reads might not get trimmed? </li>
+<li>For the same samples explored earlier, how many reads are there?</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<ol>
+<li>What are the read lengths now? What was the length of the primer sequences? </li>
+</ol>
+</div>
+</div>
+</div>
+</details>
+<h4 id="34-denoise-with-dada2">3.4 Denoise with DADA2<a class="headerlink" href="#34-denoise-with-dada2" title="Permanent link">&para;</a></h4>
+<p>Now we will “denoise” the reads, that is, carry out a series of steps with the goal of retaining “true” reads, those that represent the taxa that are present in the sample. These reads may differ by one nucleotide, and they are referred to as exact sequence variants (ESVs) or amplicon sequence variants (ASVs). </p>
+<p>As we are working with paired end reads, we use qiime2 <em>dada2 denoise-paired</em>. Through this command, quality filtering, merging of forward and reverse reads, dereplication and removal of chimeras is conducted. </p>
+<p>The quality filtering aspect refers to trimming the ends of reads where quality is suboptimal, users can also discard sequences below a particular length. This step is done first to optimize the merging of forward and reverse reads. The merging is done according to default parameters (not specified in the command). </p>
+<p>Dereplication refers to checking the presence of all identical sequencing reads and then reducing these to one “unique sequence” with a note of its abundance.  Removal of chimeras refers to the removal of sequences that are “hybrids” of different parent sequences, and which do not correspond to true ASVs.</p>
+<p>Here we will be specifying the following parameters: </p>
+<ul>
+<li>Truncation length for forward reads: at what length the forward reads will be cut and all reads below this length will be discarded</li>
+<li>Truncation length for reverse reads: at what length the reverse reads will be cut and all reads below this length will be discarded</li>
+</ul>
+<p>Note that now we will have 3 output files:</p>
+<ul>
+<li>an abundance table comprising the unique sequences and their abundance</li>
+<li>a fasta file with the unique sequences, which we refer to as the representative sequences</li>
+<li>a file containing the statistics for the denoising steps</li>
+</ul>
+<p>You can find more information on DADA2 here (<a href="https://benjjneb.github.io/dada2/">https://benjjneb.github.io/dada2/</a>).</p>
+<p>Run the following command: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>qiime<span class="w"> </span>dada2<span class="w"> </span>denoise-paired<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span>--i-demultiplexed-seqs<span class="w"> </span>QIIME2_files/paired-end-demux-trimmed.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span>--p-trunc-len-f<span class="w"> </span><span class="m">225</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span>--p-trunc-len-r<span class="w"> </span><span class="m">225</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span>--o-table<span class="w"> </span>QIIME2_files/table.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span>--o-representative-sequences<span class="w"> </span>QIIME2_files/rep-seqs.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span>--o-denoising-stats<span class="w"> </span>QIIME2_files/denoising-stats.qza<span class="w"> </span>
+</span></code></pre></div>
+<h5 id="341-summarize-read-counts">3.4.1 Summarize read counts<a class="headerlink" href="#341-summarize-read-counts" title="Permanent link">&para;</a></h5>
+<p>We will now summarise the number of reads that we have in each sample, having done the denoising. We use  <em>feature-table summarize</em>, providing a metadata file that contains information about our samples. </p>
+<p>Run the following command: 
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>qiime<span class="w"> </span>feature-table<span class="w"> </span>summarize<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span>--i-table<span class="w"> </span>QIIME2_files/table.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span>--o-visualization<span class="w"> </span>QIIME2_files/table.qzv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span>--m-sample-metadata-file<span class="w"> </span>Metadata/metadata.tsv
+</span></code></pre></div></p>
+<p>Open QIIME2 view (<a href="https://view.qiime2.org/">https://view.qiime2.org/</a>) and drop the table.qzv in the drag&amp;drop window to see the results. </p>
+<details class="question" open="open">
+<summary>Question(s):</summary>
+<ol>
+<li>In the overview tab, what does number of features refer to?</li>
+<li>In the interactive tab, quantitatively compare the number of reads before and after denoising for all 18 samples.</li>
+<li>Get together in pairs, and calculate the percentage of reads that have been retained for each sample. </li>
+</ol>
+</details>
+<p><strong>Optional command:</strong> Visualise the representative sequences after denoising with DADA2
+We use qiime feature-table tabulate-seqs to see the unique/representative sequences.</p>
+<p>Run the following command: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>qiime<span class="w"> </span>feature-table<span class="w"> </span>tabulate-seqs<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span>--i-data<span class="w"> </span>QIIME2_files/rep-seqs.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span>--o-visualization<span class="w"> </span>QIIME2_files/rep-seqs.qzv
+</span></code></pre></div>
+<details class="question" open="open">
+<summary>Question(s):</summary>
+<ol>
+<li>After running denoising with DADA2, we have obtained a set of amplicon sequence variants or exact sequence variants. Why is the length of these sequences different to that of the reads in the first fastq files you looked at?  </li>
+</ol>
+</details>
+<h4 id="35-assign-taxonomy">3.5  Assign taxonomy<a class="headerlink" href="#35-assign-taxonomy" title="Permanent link">&para;</a></h4>
+<p>We now assign taxonomy to the unique/representative sequences found across all samples. We do this with the q2-feature-classifier plugin, making use of a pre-trained Naive Bayes classifier. This classifier is an algorithm that was trained on the SILVA reference database (downloadedDecember 2019) comprising hundreds of thousands of bacterial sequences with taxonomic information. The output is a file containing the results for the different taxonomic ranks (from domain to species), and the level of confidence for the taxonomic assignment. </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>qiime<span class="w"> </span>feature-classifier<span class="w"> </span>classify-sklearn<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span>--i-classifier<span class="w"> </span>Taxonomy_classifier/silva-138-ssu-nr99-99-V4V5-classifier.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span>--i-reads<span class="w"> </span>QIIME2_files/rep-seqs.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span>--o-classification<span class="w"> </span>QIIME2_files/taxonomy.qza
+</span></code></pre></div>
+<h5 id="351-tabulate-the-taxonomy-with-the-following-command">3.5.1 Tabulate the taxonomy with the following command:<a class="headerlink" href="#351-tabulate-the-taxonomy-with-the-following-command" title="Permanent link">&para;</a></h5>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>qiime<span class="w"> </span>metadata<span class="w"> </span>tabulate<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span>--m-input-file<span class="w"> </span>QIIME2_files/taxonomy.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span>--o-visualization<span class="w"> </span>QIIME2_files/taxonomy.qzv
+</span></code></pre></div>
+<details class="question" open="open">
+<summary>Question(s):</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Basic</label><label for="__tabbed_5_2">Advanced</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ol>
+<li>What are the different taxonomic ranks that are being assigned?</li>
+<li>Are there any sequences that are not bacterial? If so, what are they?</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<ol>
+<li>Choose one of the features (ASVs), can you find its nucleotide sequence in another file? Once you have done so, check the taxonomic output obtained using blast, which implements a different algorithm. You can do so <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&amp;PAGE_TYPE=BlastSearch&amp;LINK_LOC=blasthome">here:</a>. Is the taxonomic assingment the same or different?</li>
+</ol>
+</div>
+</div>
+</div>
+</details>
+<h4 id="36-filter-non-bacterial-sequences">3.6 Filter non-bacterial sequences<a class="headerlink" href="#36-filter-non-bacterial-sequences" title="Permanent link">&para;</a></h4>
+<p>Our library preparation and sequencing targets the prokaryotic 16S rRNA gene, but we may end up obtaining reads that are not prokaryotic eg from chloroplasts or mitochondria, and with reads that originate from archaea, which we are not looking at in this study. By using <em>taxa filter-table</em> we can specify what taxa we want to retain and what taxa we want to exclude in the ASV abundance table. With “mode” we are specifying that we want the search terms not to be case sensitive e.g. Eukaryota/eukaryota.</p>
+<!-- !!! tip "16S rRNA"
+    By targeting 16S rRNA, we want to target bacteria and archaea. Therefore, we can exclude sequences that are unexpected such as those from chloroplasts or mitochondria. By setting --p-include p__, we are retaining only sequences annotated at a minimum to the phylum level. Note: this will look different depending on the database used. Greengenes specifically uses the following format for annotations: k__;p__;c__;o__;f__;g__;s__. Also, --p-mode contains ensures that search terms are case insensitve (e.g., mitochondria versus Mitochondria). -->
+
+<p>Run the following commands:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>qiime<span class="w"> </span>taxa<span class="w"> </span>filter-table<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>--i-table<span class="w"> </span>QIIME2_files/table.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>--i-taxonomy<span class="w"> </span>QIIME2_files/taxonomy.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>--p-mode<span class="w"> </span>contains<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>--p-include<span class="w"> </span>d__<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>--p-exclude<span class="w"> </span><span class="s1">&#39;d__;,Eukaryota&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>--o-filtered-table<span class="w"> </span>QIIME2_files/filtered-table.qza
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>qiime<span class="w"> </span>feature-table<span class="w"> </span>filter-seqs<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>--i-data<span class="w"> </span>QIIME2_files/rep-seqs.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>--i-table<span class="w"> </span>QIIME2_files/filtered-table.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>--o-filtered-data<span class="w"> </span>QIIME2_files/filtered-sequences.qza
+</span></code></pre></div>
+<details class="question" open="open">
+<summary>Question(s)</summary>
+<ol>
+<li>What is the last command being used for?</li>
+</ol>
+</details>
+<h4 id="37-generate-taxonomic-barplots">3.7 Generate taxonomic barplots<a class="headerlink" href="#37-generate-taxonomic-barplots" title="Permanent link">&para;</a></h4>
+<p>In order to visualise the relative abundance of the taxa in each sample, we use <em>taxa barplot</em></p>
+<p>Run the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>qiime<span class="w"> </span>taxa<span class="w"> </span>barplot<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>--i-table<span class="w"> </span>QIIME2_files/filtered-table.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>--i-taxonomy<span class="w"> </span>QIIME2_files/taxonomy.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>--m-metadata-file<span class="w"> </span>Metadata/metadata.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>--o-visualization<span class="w"> </span>QIIME2_files/taxa-bar-plots-1.qzv
+</span></code></pre></div>
+<details class="question" open="open">
+<summary>Question(s)</summary>
+<ol>
+<li>What taxonomic ranks correspond to the different “levels”?</li>
+<li>What patterns do you observe at the different taxonomic ranks/levels? Do you observe any differences across the three groups? </li>
+<li>Which taxonomic rank provides most information about the differences across the groups?</li>
+<li>Which taxa differ most, in terms of relative abundance, across the three groups?</li>
+<li>Investigate these taxa using online resources: what other relevant information can you find in the literature? </li>
+</ol>
+</details>
+<h4 id="38-generate-the-rarefaction-curve">3.8. Generate the rarefaction curve<a class="headerlink" href="#38-generate-the-rarefaction-curve" title="Permanent link">&para;</a></h4>
+<p>We expect greater sequencing depth to allow us to capture bacterial diversity more accurately: as sequencing depth increases, more and more taxa are recovered. You can see this in the rarefaction plot, where we look at the changes in observed features (ASVs) recovered at different sequencing depths (number of reads sequenced). However, at a certain point we observe that the number of features recovered stabilises: we reach a plateau, and we infer that the sequencing depth is sufficient.</p>
+<p>Plot the rarefaction curves for the samples from the dataset using <em>diversity alpha-rarefaction</em>. </p>
+<details class="tip" open="open">
+<summary>tip</summary>
+<p>Help on aplha diversity: qiime diversity alpha-rarefaction –help</p>
+</details>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>qiime<span class="w"> </span>diversity<span class="w"> </span>alpha-rarefaction<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span>--i-table<span class="w"> </span>QIIME2_files/filtered-table.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span>--i-phylogeny<span class="w"> </span>Phylogenetic_tree/rooted-tree.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span>--m-metadata-file<span class="w"> </span>Metadata/metadata.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span>--p-max-depth<span class="w"> </span><span class="m">88500</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span>--o-visualization<span class="w"> </span>QIIME2_files/alpha-rarefaction-plot.qzv
+</span></code></pre></div>
+<details class="question" open="open">
+<summary>Question(s):</summary>
+<ol>
+<li>Why did we specify a max depth of 88,500?</li>
+<li>Do you observe differences across the three groups?</li>
+</ol>
+</details>
+<h4 id="39-core-metrics-phylogenetic-alpha-and-beta-diversities">3.9. Core metrics phylogenetic: alpha and beta diversities¶<a class="headerlink" href="#39-core-metrics-phylogenetic-alpha-and-beta-diversities" title="Permanent link">&para;</a></h4>
+<p>To investigate alpha and beta diversity, we use diversity core-metrics-phylogenetic, computing the following metrics.</p>
+<ul>
+<li>Alpha diversity indices<ul>
+<li>Shannon’s diversity </li>
+<li>Observed Features (in this case ASVs)</li>
+<li>Faith’s Phylogenetic Diversity </li>
+<li>Evenness </li>
+</ul>
+</li>
+<li>Beta diversity distances<ul>
+<li>Jaccard distance </li>
+<li>Bray-Curtis distance </li>
+<li>unweighted UniFrac distance </li>
+<li>weighted UniFrac distance </li>
+</ul>
+</li>
+</ul>
+<p>To run these analyses, in addition to the ASV abundance table, we need to provide a phylogenetic tree (already generated for you) and the metadata file. To increase computational speed we use 
+the --p-n-jobs-or-threads.</p>
+<p>Importantly, <em>diversity core-metrics-phylogenetic</em> requires us to use the same sampling depth for all samples. Thus, we need to provide a sampling depth, that is, the number of total reads from each sample that will be used. If we want to keep all samples in the analyses, we will have to specify the minimum read depth in our sample set. Do you recall what this was? Make sure to specify it with--p-sampling-depth </p>
+<p>Run the following command:</p>
+<!-- ???+ note "info"
+    The parameters we need to know include the path to our rooted tree (--i-phylogeny), the path to our feature table (--i-table), the sampling depth at which we would like to rarefy (--p-sampling-depth), the path to the sample information (--m-metadata-file), and the name of the directory we would like to save our results to (--output-dir). If you do not have a tree, or you are not interested in phylogenetic diversity metrics, you can also use qiime diversity core-metrics. We can speed up this command by including the --p-n-jobs-or-threads parameter.
+
+???+ question "Question(s):"
+    We have chosen a sampling depth that corresponds to the minimum number of reads in a sample. Which sample is it? -->
+
+<p>We use qiime diversity core-metrics-phylogenetic to generate a set of results. </p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>qiime<span class="w"> </span>diversity<span class="w"> </span>core-metrics-phylogenetic<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span>--i-phylogeny<span class="w"> </span>Phylogenetic_tree/rooted-tree.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span>--i-table<span class="w"> </span>QIIME2_files/filtered-table.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span>--p-sampling-depth<span class="w"> </span>xxxx<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span>--p-n-jobs-or-threads<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span>--m-metadata-file<span class="w"> </span>Metadata/metadata.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span>--output-dir<span class="w"> </span>QIIME2_files/diversity-core-metrics-phylogenetic
+</span></code></pre></div>
+View the folders that have been generated by running: </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ls<span class="w"> </span>-l<span class="w"> </span>diversity-core-metrics-phylogenetic
+</span></code></pre></div>
+<h5 id="391-alpha-diversity-and-significance">3.9.1 Alpha diversity and significance<a class="headerlink" href="#391-alpha-diversity-and-significance" title="Permanent link">&para;</a></h5>
+<p>We will first focus on alpha (intra-sample diversity) and return to beta diversities later again. 
+For the alpha diversity indices, we check whether there are significant differences across groups. We do so using <em>diversity alpha-group significance</em>. You can do this for any of the indices computed. </p>
+<p>Run the following command to test statistically significant differences for the “observed features” index:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>qiime<span class="w"> </span>diversity<span class="w"> </span>alpha-group-significance<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span>--i-alpha-diversity<span class="w"> </span>QIIME2_files/diversity-core-metrics-phylogenetic/observed_features_vector.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span>--m-metadata-file<span class="w"> </span>Metadata/metadata.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span>--o-visualization<span class="w"> </span>QIIME2_files/alpha-group-sig-obs-feats.qzv
+</span></code></pre></div>
+<details class="question" open="open">
+<summary>Question(s):</summary>
+<ol>
+<li>Explore the alpha diversity indices, and test statistical significance for these. In pairs, discuss the patterns observed. Which “groups” of samples have higher intra-sample diversity? Which groups have lower intra-sample diversity? What could be potential explanations?  </li>
+<li>Are the alpha diversity patterns congruent with the taxonomic composition observed in the barplots?</li>
+</ol>
+</details>
+<p><strong>For turbo learners</strong>
+Now run the previous command specifying different sampling depths (remember to save the output file under a different name). </p>
+<h5 id="392-beta-diversity-and-significance">3.9.2 Beta diversity and significance<a class="headerlink" href="#392-beta-diversity-and-significance" title="Permanent link">&para;</a></h5>
+<p>We now focus on beta diversity (inter-sample diversity). To test significance we use <em>diversity beta-group significance</em>. We will do so for the Bray Curtis distance matrix. </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>qiime<span class="w"> </span>diversity<span class="w"> </span>beta-group-significance<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span>--i-distance-matrix<span class="w"> </span>QIIME2_files/diversity-core-metrics-phylogenetic/bray_curtis_distance_matrix.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span>--m-metadata-file<span class="w"> </span>Metadata/metadata.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span>--m-metadata-column<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span>--o-visualization<span class="w"> </span>QIIME2_files/diversity-core-metrics-phylogenetic/braycurtis-type-significance.qzv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">    </span>--p-pairwise
+</span></code></pre></div>
+<details class="question" open="open">
+<summary>Question(s):</summary>
+<ol>
+<li>Explore the different distance metrics and the corresponding PCoA plots generated. What are the similarities and differences?  </li>
+<li>Now focus on the weighted and the unweighted unifrac distance matrices. Are there significant differences across the groups with these distance matrices?</li>
+</ol>
+</details>
+<!-- ???+ note "Note"
+    Again, rarefaction is used to eliminate issues due to differences in library size prior to beta diversity. This method is built-in to QIIME 2 core metrics pipelines. We can examine the stability of a beta diversity metric using qiime diversity beta-rarefaction. -->
+
+<!--
+  1. Material for MkDocs uses [semantic versioning][^2], which is why it's a
+    good idea to limit upgrades to the current major version.
+
+    This will make sure that you don't accidentally [upgrade to the next
+    major version], which may include breaking changes that silently corrupt
+    your site. Additionally, you can use `pip freeze` to create a lockfile,
+    so builds are reproducible at all times:
+
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>pip freeze &gt; requirements.txt
+</span></code></pre></div>
+
+    Now, the lockfile can be used for installation:
+
+    <div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>pip install -r requirements.txt
+</span></code></pre></div>
+
+> **_NOTE:_** The note content.
+
+??? question "How to add plugins to the Docker image?"
+
+  Material for MkDocs only bundles selected plugins in order to keep the size
+  of the official image small. If the plugin you want to use is not included,
+  you can add them easily:
+
+  === "Material for MkDocs" 
+
+    Create a `Dockerfile` and extend the official image:
+
+    <div class="language-Dockerfile highlight"><span class="filename">Dockerfile</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">squidfunk/mkdocs-material</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-macros-plugin
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-glightbox
+</span></code></pre></div>
+
+  === "Insiders"
+
+    Clone or fork the Insiders repository, and create a file called
+    `user-requirements.txt` in the root of the repository. Then, add the
+    plugins that should be installed to the file, e.g.:
+
+    <div class="language-text highlight"><span class="filename">user-requirements.txt</span><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>mkdocs-macros-plugin
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>mkdocs-glightbox
+</span></code></pre></div>
+
+  Next, build the image with the following command:
+
+  <div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>docker build -t squidfunk/mkdocs-material .
+</span></code></pre></div>
+
+  The new image will have additional packages installed and can be used
+  exactly like the official image.
+
+-->
+
+<!--
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="ch">#!unzip alpha-rarefaction-plot_50000.qzv</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="c1">#!unzip alpha-rarefaction-plot_60000.qzv</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>unzip<span class="w"> </span>alpha-rarefaction-plot_80000.qzv
+</span></code></pre></div>
+
+!!! warning "Update the path to the "new" extracted directory"
+     Update the path to the "new" extracted directory: !open new_directory/data/index.html
+
+open 2dcca9b2-070d-43a1-af5d-99fc3b55799b/data/index.html
+
+
+
+### 8. Core metrics phylogenetic: alpha and beta diversities
+
+!!! info "info" 
+    We will produce a number of core diversity metrics (alpha and beta) using a QIIME 2 pipeline, qiime diversity core-metrics-phylogenetic.
+
+???+ note "info"
+    The parameters we need to know include the path to our rooted tree (--i-phylogeny), the path to our feature table (--i-table), the sampling depth at which we would like to rarefy (--p-sampling-depth), the path to the sample information (--m-metadata-file), and the name of the directory we would like to save our results to (--output-dir). If you do not have a tree, or you are not interested in phylogenetic diversity metrics, you can also use qiime diversity core-metrics. We can speed up this command by including the --p-n-jobs-or-threads parameter.
+
+???+ info "info?"
+    - The rarefaction curve shows the sampling depth and the number of samples.
+    - Meghna chose 40000 sampling depth here so that we can still look at all the 18 samples.
+    - Meghna tried 50000 sampling depth and the total number of samples was reduced to 9 in future plots.
+    - Tamara and Meghna tried 20000 sampling depth due to alpha-rarefaction-plot_80000.qzv  first sample drops out at around 22000 sequencing depth
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>qiime<span class="w"> </span>diversity<span class="w"> </span>core-metrics-phylogenetic<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>--i-phylogeny<span class="w"> </span>phylogeny-align-to-tree-mafft-fasttree/rooted_tree.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>--i-table<span class="w"> </span>filtered-table.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>--p-sampling-depth<span class="w"> </span><span class="m">20000</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>--p-n-jobs-or-threads<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>--m-metadata-file<span class="w"> </span>metadata.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>--output-dir<span class="w"> </span>diversity-core-metrics-phylogenetic
+</span></code></pre></div>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>ls<span class="w"> </span>-l<span class="w"> </span>diversity-core-metrics-phylogenetic
+</span></code></pre></div>
+
+
+#### 8.1 Alpha diversity
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>qiime<span class="w"> </span>diversity<span class="w"> </span>alpha-group-significance<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>--i-alpha-diversity<span class="w"> </span>diversity-core-metrics-phylogenetic/observed_features_vector.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>--m-metadata-file<span class="w"> </span>metadata.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>--o-visualization<span class="w"> </span>alpha-group-sig-obs-feats.qzv
+</span></code></pre></div>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>unzip<span class="w"> </span>alpha-group-sig-obs-feats.qzv
+</span></code></pre></div>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>open<span class="w"> </span>51553b22-2b97-4265-90cb-f211b22016c1/data/index.html
+</span></code></pre></div>
+
+
+#### 8.2 Beta rarefaction
+
+???+ note "Note"
+    Again, rarefaction is used to eliminate issues due to differences in library size prior to beta diversity. This method is built-in to QIIME 2 core metrics pipelines. We can examine the stability of a beta diversity metric using qiime diversity beta-rarefaction.
+
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>qiime<span class="w"> </span>diversity<span class="w"> </span>beta-rarefaction<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>--i-table<span class="w"> </span>filtered-table.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>--p-metric<span class="w"> </span>braycurtis<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>--p-clustering-method<span class="w"> </span>nj<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>--p-sampling-depth<span class="w"> </span><span class="m">20000</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>--m-metadata-file<span class="w"> </span>metadata.tsv<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>--o-visualization<span class="w"> </span>braycurtis-rarefaction-plot.qzv
+</span></code></pre></div>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>unzip<span class="w"> </span>braycurtis-rarefaction-plot.qzv
+</span></code></pre></div>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>open<span class="w"> </span>c9a5f4f9-22af-4a41-9dba-abb20ad140e1/data/index.html
+</span></code></pre></div>
+
+
+#### 8.3 PCoA plots for beta diversity
+
+???+ info "info?"
+    PCoA was included by default in our core-metrics-phylogenetic pipeline. Because these are longitudinal data, we will customize the axis to include the varaible, week-relative-to-hct.
+
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>unzip<span class="w"> </span>uu-pcoa-emperor-w-time.qzv
+</span></code></pre></div>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>open<span class="w"> </span>e864fa09-a2a2-45ef-9c7c-cdb4ffc077b2/data/index.html
+</span></code></pre></div>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>qiime<span class="w"> </span>emperor<span class="w"> </span>plot<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>--i-pcoa<span class="w"> </span>diversity-core-metrics-phylogenetic/weighted_unifrac_pcoa_results.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>--m-metadata-file<span class="w"> </span>metadata.tsv<span class="w"> </span>diversity-core-metrics-phylogenetic/faith_pd_vector.qza<span class="w"> </span>diversity-core-metrics-phylogenetic/evenness_vector.qza<span class="w"> </span>diversity-core-metrics-phylogenetic/shannon_vector.qza<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>--o-visualization<span class="w"> </span>wu-pcoa-emperor-w-time.qzv
+</span></code></pre></div>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>unzip<span class="w"> </span>wu-pcoa-emperor-w-time.qzv
+</span></code></pre></div>
+
+```bash
+open 8312bd2c-1554-45a3-a3ba-1d3878e9b564/data/index.html
+``` -->
+
+<!-- qiime feature-table filter-samplas \
+    --i-table QIIME2_files/filtered_table.qza \
+    --m-metadata-file Metadata/Metadata.tsv \
+    --p-where '[mouse_number]="IL10-5" OR [mouse_number]="IL10-6"' \
+    --o-filtered-table QIIME2_files/filtered-table_new.qza -->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.instant", "content.action.edit", "content.action.view", "navigation.expand", "navigation.sections", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "toc.follow", "search.suggest", "search.higlihgt", "content.tabs.link", "content.code.annotation", "navigation.path", "content.code.copy"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
